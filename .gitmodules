@@ -1,0 +1,9 @@
+[submodule "libs/PICClinicModel"]
+	path = libs/PICClinicModel
+	url = ssh://gitosis@ds.pace/contracting/PICClinic/Model.git
+[submodule "libs/JSONKit"]
+	path = libs/JSONKit
+	url = git://github.com/johnezang/JSONKit.git
+[submodule "libs/ZipArchive"]
+	path = libs/ZipArchive
+	url = git://github.com/CassiusPacheco/ZipArchive.git
