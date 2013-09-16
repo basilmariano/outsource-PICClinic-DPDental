@@ -35,10 +35,15 @@ typedef enum
 @property (nonatomic, retain) IBOutlet UITextField *treatmentName;
 @property (nonatomic, retain) IBOutlet UITextField *stepsDate;
 @property (nonatomic, retain) IBOutlet UITextField *stepsTime;
+@property (nonatomic, retain) IBOutlet UITextField *journalName;
 @property (nonatomic, retain) IBOutlet UIButton *buttonDoctors;
 @property (nonatomic, retain) IBOutlet UIButton *buttonTreatments;
 @property (nonatomic, retain) IBOutlet UIButton *buttonDates;
 @property (nonatomic, retain) IBOutlet UIButton *buttonTime;
+@property (nonatomic, retain) IBOutlet UIView *viewJournal;
+@property (nonatomic, retain) UIButton *rightButton;
+@property (nonatomic, retain) NSString *assignedjournalName;
+@property (nonatomic, retain) NSString *assignedjournalArticleId;
 
 - (IBAction)onButtonDoctorsClick:(id)sender;
 - (IBAction)onButtonTreatmentClick:(id)sender;
@@ -48,6 +53,9 @@ typedef enum
 @end
 
 @implementation DPTreatmentViewController
+{
+    bool isEditing;
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -76,6 +84,35 @@ typedef enum
     return self;
 }
 
+- (id)initWithTreatment: (Treatment *) treatement
+{
+    NSString *nibName = [[XCDeviceManager sharedInstance] xibNameForDevice:@"DPTreatmentViewController"];
+    self = [super initWithNibName:nibName bundle:nil];
+    if (self) {
+        
+        [[PCRequestHandler sharedInstance] requestGroupList:@"35"];
+        [[PCRequestHandler sharedInstance] requestGroupList:@"38"];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(treatmentListData:)
+                                                     name:[NSString stringWithFormat:DATA_KEY,@"list",@"35"]
+                                                   object:nil];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(doctorListData:)
+                                                     name:[NSString stringWithFormat:DATA_KEY,@"list",@"38"]
+                                                   object:nil];
+    }
+    
+    self.treatment = treatement;
+    
+    self.navigationItem.title = treatement.name;
+    self.navigationItem.leftBarButtonItem = [self leftBatButton];
+    self.navigationItem.rightBarButtonItem = [self rightBarButtonExtras];
+    
+    return self;
+}
+
 - (void) dealloc
 {
     [_treatment release];
@@ -93,10 +130,15 @@ typedef enum
     [_treatmentName release];
     [_stepsDate release];
     [_stepsTime release];
+    [_journalName release];
     [_buttonDoctors release];
     [_buttonTreatments release];
     [_buttonDates release];
     [_buttonTime release];
+    [_rightButton release];
+    [_viewJournal release];
+    [_assignedjournalName release];
+    [_assignedjournalArticleId release];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     
     [super dealloc];
@@ -107,9 +149,6 @@ typedef enum
     [super viewDidLoad];
     
     if (self.treatment) {
-        
-        self.treatmentName.text = self.treatment.name;
-        self.doctorName.text = self.treatment.doctor;
         
         NSDate *date = [NSDate dateWithTimeIntervalSince1970:[self.treatment.dateInSecs doubleValue]];
         
@@ -125,8 +164,18 @@ typedef enum
         NSString *strDate = [formatDate stringFromDate:date];
         NSString *strTime = [formatTime stringFromDate:date];
         
+        self.treatmentName.text = self.treatment.name;
+        self.doctorName.text = self.treatment.doctor;
         self.stepsDate.text = strDate;
         self.stepsTime.text = strTime;
+        self.journalName.text = self.treatment.journalName;
+        
+        [_buttonTime setUserInteractionEnabled:NO];
+        [_buttonTreatments setUserInteractionEnabled:NO];
+        [_buttonDates setUserInteractionEnabled:NO];
+        [_buttonDoctors setUserInteractionEnabled:NO];
+        
+        [_viewJournal setHidden:NO];
         
     }
     
@@ -157,7 +206,6 @@ typedef enum
 -(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
     NSString *rowTittle = [[self.pickerData objectAtIndex:row] objectForKey:@"item_name"];
- 
     return rowTittle;
 }
 
@@ -165,9 +213,26 @@ typedef enum
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex == 0) {
-        NSLog(@"Edit");
+        NSString *buttonNormalImageName = @"PICClinicModel.bundle/iphone_Done_btn_s.png";
+        NSString *buttonHighlightedImageName = @"PICClinicModel.bundle/iphone_Done_btn_sa.png";
+        
+        if ([XCDeviceManager sharedInstance].deviceType == iPad_Device) {
+            buttonNormalImageName = @"PICClinicModel.bundle/ipad_Done_btn_s.png";
+            buttonHighlightedImageName = @"PICClinicModel.bundle/ipad_Done_btn_sa.png";
+        }
+        
+        [_rightButton setImage:[UIImage imageNamed: buttonNormalImageName] forState:UIControlStateNormal];
+        [_rightButton setImage:[UIImage imageNamed: buttonHighlightedImageName ] forState:UIControlStateHighlighted];
+        
+        [_buttonDoctors setUserInteractionEnabled:YES];
+        [_buttonDates setUserInteractionEnabled:YES];
+        
+        isEditing = YES;
     } else if (buttonIndex == 1) {
-        NSLog(@"Journal");
+        PCModelWebViewController * webViewController = [[[PCModelWebViewController alloc] initWithTreatment:self.treatment] autorelease];
+        
+        [self.navigationController pushViewController:webViewController animated:YES];
+        
     } else {
         NSLog(@"Cancel");
     }
@@ -204,64 +269,36 @@ typedef enum
 
 - (void) onExtrasClick: (id) sender
 {
-    UIActionSheet *extrasActionSheet = [[[UIActionSheet alloc] initWithTitle:@"Extras" delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil] autorelease];
-    [extrasActionSheet buttonTitleAtIndex:[extrasActionSheet addButtonWithTitle:@"Edit"]];
-    [extrasActionSheet buttonTitleAtIndex:[extrasActionSheet addButtonWithTitle:@"Journal"]];
-    [extrasActionSheet buttonTitleAtIndex:[extrasActionSheet addButtonWithTitle:@"Cancel"]];
-    [extrasActionSheet showFromTabBar:self.tabBarController.tabBar];
-    
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+    if (isEditing) {
+        NSString *buttonNormalImageName = @"PICClinicModel.bundle/iphone_Extra_btn_s.png";
+        NSString *buttonHighlightedImageName = @"PICClinicModel.bundle/iphone_Extra_btn_sa.png";
         
-        UIViewController *viewControler = [[[UIViewController alloc]init] autorelease];
-        viewControler.contentSizeForViewInPopover = CGSizeMake(extrasActionSheet.frame.size.width
-                                                               , extrasActionSheet.frame.size.height);
+        if ([XCDeviceManager sharedInstance].deviceType == iPad_Device) {
+            buttonNormalImageName = @"PICClinicModel.bundle/ipad_Extra_btn_s.png";
+            buttonHighlightedImageName = @"PICClinicModel.bundle/ipad_Extra_btn_sa.png";
+        }
         
-        FPPopoverController *popOver = [[FPPopoverController alloc] initWithViewController:viewControler];
-        popOver.contentSize = CGSizeMake(viewControler.view.frame.size.width, viewControler.view.frame.size.height);
-        [popOver presentPopoverFromView:sender];
-        /*self.popOver = [[UIPopoverController alloc] initWithContentViewController:viewControler];
-        [_popOver presentPopoverFromBarButtonItem:self.navigationItem.rightBarButtonItem permittedArrowDirections:UIPopoverArrowDirectionDown animated:YES];
-        [_popOver setDelegate:self];*/
-    }
-    
-
-    //for Edit
-    /*
-    NSDateFormatter *dateSched = [[[NSDateFormatter alloc] init] autorelease];
-    dateSched.timeZone = [NSTimeZone defaultTimeZone];
-    [dateSched setDateFormat:@"dd/MM/yy"];
-    
-    NSDateFormatter *timeSched = [[[NSDateFormatter alloc] init] autorelease];
-    dateSched.timeZone = [NSTimeZone timeZoneWithName:@"UTC"];
-    [timeSched setDateFormat:@"hh:mm aa"];
-    
-    
-    NSDate *selectedDate = [dateSched dateFromString:self.stepsDate.text];
-    
-    NSTimeInterval schedTimeInterval = [selectedDate timeIntervalSince1970] + [self.timeSelected timeIntervalSince1970];
-    
-    NSNumber *dateSchedInSecs = [NSNumber numberWithDouble:schedTimeInterval];
-    
-    if (!self.treatment) {
+        [_rightButton setImage:[UIImage imageNamed: buttonNormalImageName] forState:UIControlStateNormal];
+        [_rightButton setImage:[UIImage imageNamed: buttonHighlightedImageName ] forState:UIControlStateHighlighted];
         
-        Treatment *treatment = [Treatment newTreatment];
-        treatment.name = self.treatmentName.text;
-        treatment.doctor = self.doctorName.text;
-        treatment.dateInSecs = dateSchedInSecs;
+        [self saveTreatment];
         
-        [[PCModelManager sharedManager] saveContext];
-        
+        isEditing = NO;
     } else {
-        
-        self.treatment.name = self.treatmentName.text;
-        self.treatment.doctor = self.doctorName.text;
-        self.treatment.dateInSecs = dateSchedInSecs;
-        
-        [[PCModelManager sharedManager] saveContext];
+        UIActionSheet *extrasActionSheet = [[[UIActionSheet alloc] initWithTitle:@"Extras" delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil] autorelease];
+        [extrasActionSheet buttonTitleAtIndex:[extrasActionSheet addButtonWithTitle:@"Edit"]];
+        [extrasActionSheet buttonTitleAtIndex:[extrasActionSheet addButtonWithTitle:@"Journal"]];
+        [extrasActionSheet buttonTitleAtIndex:[extrasActionSheet addButtonWithTitle:@"Cancel"]];
+        [extrasActionSheet showFromTabBar: self.tabBarController.tabBar];
+
     }
+}
+
+- (void) onDoneClick: (id) sender
+{
+    [self saveTreatment];
     
     [self.navigationController popViewControllerAnimated:YES];
-     */
 }
 
 /*- (void) debugPurposes
@@ -350,6 +387,11 @@ typedef enum
             NSString *pickedData = [[self.pickerData objectAtIndex: selectedRow] objectForKey:@"item_name"];
             
             if (self.selectedView.tag == 0) { //treatment button
+                NSString *journalName = [[self.pickerData objectAtIndex: selectedRow] objectForKey:@"item_desc"];
+                NSString *articleId = [[self.pickerData objectAtIndex: selectedRow] objectForKey:@"action_id"];
+                
+                self.assignedjournalName = journalName;
+                self.assignedjournalArticleId = articleId;
                 self.treatmentName.text = pickedData;
             } else { //doctor button
                 self.doctorName.text = pickedData;
@@ -589,27 +631,98 @@ typedef enum
 
 - (UIBarButtonItem *) rightBatButton
 {
-    UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [rightButton setFrame:CGRectMake(0.0f, 0.0f, 45.5f, 28.0f)];
+    self.rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [_rightButton setFrame:CGRectMake(0.0f, 0.0f, 45.5f, 28.0f)];
     
-    [rightButton setImage:[UIImage imageNamed:@"PICClinicModel.bundle/iphone_Done_btn_s.png" ] forState:UIControlStateNormal];
-    [rightButton setImage:[UIImage imageNamed:@"PICClinicModel.bundle/iphone_Done_btn_ss.png" ] forState:UIControlStateHighlighted];
+    [_rightButton setImage:[UIImage imageNamed:@"PICClinicModel.bundle/iphone_Done_btn_s.png" ] forState:UIControlStateNormal];
+    [_rightButton setImage:[UIImage imageNamed:@"PICClinicModel.bundle/iphone_Done_btn_ss.png" ] forState:UIControlStateHighlighted];
     
-    [rightButton addTarget:self action:@selector(onExtrasClick:) forControlEvents:UIControlEventTouchUpInside];
+    [_rightButton addTarget:self action:@selector(onDoneClick:) forControlEvents:UIControlEventTouchUpInside];
     
-    UIView *rightButtonView = [[[UIView alloc] initWithFrame:rightButton.frame] autorelease];
-    [rightButtonView addSubview:rightButton];
+    UIView *rightButtonView = [[[UIView alloc] initWithFrame:_rightButton.frame] autorelease];
+    [rightButtonView addSubview:_rightButton];
     
     if ([XCDeviceManager sharedInstance].deviceType == iPad_Device ) {
         
-        [rightButton setFrame:CGRectMake(0.0f, 17.0f, 105.5f, 66.5f)];
-        [rightButton setImage:[UIImage imageNamed:@"PICClinicModel.bundle/ipad_Done_btn_s.png" ] forState:UIControlStateNormal];
-        [rightButton setImage:[UIImage imageNamed:@"PICClinicModel.bundle/ipad_Done_btn_ss.png" ] forState:UIControlStateHighlighted];
+        [_rightButton setFrame:CGRectMake(0.0f, 17.0f, 105.5f, 66.5f)];
+        [_rightButton setImage:[UIImage imageNamed:@"PICClinicModel.bundle/ipad_Done_btn_s.png" ] forState:UIControlStateNormal];
+        [_rightButton setImage:[UIImage imageNamed:@"PICClinicModel.bundle/ipad_Done_btn_ss.png" ] forState:UIControlStateHighlighted];
         
         rightButtonView.frame = CGRectMake(0.0f, 0.0f, 105.5f, 66.5f);
     }
     
     return  [[[UIBarButtonItem alloc] initWithCustomView:rightButtonView] autorelease];
+}
+
+- (UIBarButtonItem *) rightBarButtonExtras
+{
+    self.rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [_rightButton setFrame:CGRectMake(0.0f, 0.0f, 45.5f, 28.0f)];
+    
+    [_rightButton setImage:[UIImage imageNamed:@"PICClinicModel.bundle/iphone_Extra_btn_s.png" ] forState:UIControlStateNormal];
+    [_rightButton setImage:[UIImage imageNamed:@"PICClinicModel.bundle/iphone_Extra_btn_ss.png" ] forState:UIControlStateHighlighted];
+    
+    [_rightButton addTarget:self action:@selector(onExtrasClick:) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIView *rightButtonView = [[[UIView alloc] initWithFrame:_rightButton.frame] autorelease];
+    [rightButtonView addSubview:_rightButton];
+    
+    if ([XCDeviceManager sharedInstance].deviceType == iPad_Device ) {
+        
+        [_rightButton setFrame:CGRectMake(0.0f, 17.0f, 105.5f, 66.5f)];
+        [_rightButton setImage:[UIImage imageNamed:@"PICClinicModel.bundle/ipad_Extra_btn_s.png" ] forState:UIControlStateNormal];
+        [_rightButton setImage:[UIImage imageNamed:@"PICClinicModel.bundle/ipad_Extra_btn_ss.png" ] forState:UIControlStateHighlighted];
+        
+        rightButtonView.frame = CGRectMake(0.0f, 0.0f, 105.5f, 66.5f);
+    }
+    
+    return  [[[UIBarButtonItem alloc] initWithCustomView:rightButtonView] autorelease];
+}
+
+- (void) saveTreatment
+{
+    NSDateFormatter *dateSched = [[[NSDateFormatter alloc] init] autorelease];
+    dateSched.timeZone = [NSTimeZone defaultTimeZone];
+    [dateSched setDateFormat:@"dd/MM/yy"];
+    
+    NSDateFormatter *timeSched = [[[NSDateFormatter alloc] init] autorelease];
+    dateSched.timeZone = [NSTimeZone timeZoneWithName:@"UTC"];
+    [timeSched setDateFormat:@"hh:mm aa"];
+    
+    
+    NSDate *selectedDate = [dateSched dateFromString:self.stepsDate.text];
+    
+    NSTimeInterval schedTimeInterval = [selectedDate timeIntervalSince1970] + [self.timeSelected timeIntervalSince1970];
+    
+    NSNumber *dateSchedInSecs = [NSNumber numberWithDouble:schedTimeInterval];
+    
+    //check if the given value is NSNumber and convert to NSString object
+    if ([self.assignedjournalArticleId isKindOfClass:[NSNumber class]]) {
+        self.assignedjournalArticleId = [(NSNumber *) self.assignedjournalArticleId stringValue];
+    }
+    
+    if (!self.treatment) {
+        
+        Treatment *treatment = [Treatment newTreatment];
+        treatment.name = self.treatmentName.text;
+        treatment.doctor = self.doctorName.text;
+        treatment.dateInSecs = dateSchedInSecs;
+        treatment.journalName = self.assignedjournalName;
+        treatment.articleId = self.assignedjournalArticleId;
+        
+        [[PCModelManager sharedManager] saveContext];
+        
+    } else {
+        
+        self.treatment.name = self.treatmentName.text;
+        self.treatment.doctor = self.doctorName.text;
+        self.treatment.dateInSecs = dateSchedInSecs;
+        self.treatment.journalName = self.assignedjournalName;
+        self.treatment.articleId = self.assignedjournalArticleId;
+        
+        [[PCModelManager sharedManager] saveContext];
+    }
+    
 }
 
 @end

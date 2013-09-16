@@ -173,8 +173,7 @@
     NSLog(@"Selected index %ld", (long)indexPath.row);
     Treatment *treatment = (Treatment *) [self.treatments objectAtIndex:indexPath.row];
     
-    DPTreatmentViewController *treatmentViewController = [[[DPTreatmentViewController alloc] initWithNibName:@"DPTreatmentListViewController" bundle:nil] autorelease];
-    treatmentViewController.treatment = treatment;
+    DPTreatmentViewController *treatmentViewController = [[[DPTreatmentViewController alloc] initWithTreatment:treatment] autorelease];
     
     [self.navigationController pushViewController:treatmentViewController animated:YES];
 }

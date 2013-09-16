@@ -13,4 +13,6 @@
 
 @property (nonatomic, retain) Treatment *treatment;
 
+- (id)initWithTreatment: (Treatment *) treatement;
+
 @end
