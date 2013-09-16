@@ -8,6 +8,7 @@
 
 #import "DPTreatmentViewController.h"
 #import "ManageObjectModel.h"
+#import "FPPopoverController.h"
 
 typedef enum
 {
@@ -17,7 +18,7 @@ typedef enum
     
 } PickerType;
 
-@interface DPTreatmentViewController () <UIPickerViewDataSource, UIPickerViewDelegate, UIPopoverControllerDelegate>
+@interface DPTreatmentViewController () <UIPickerViewDataSource, UIPickerViewDelegate, UIPopoverControllerDelegate, UIActionSheetDelegate>
 
 @property (nonatomic) PickerType pickerType;
 @property (nonatomic, retain) UIActionSheet *actionSheet;
@@ -160,16 +161,28 @@ typedef enum
     return rowTittle;
 }
 
+#pragma mark UIActionSheet
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 0) {
+        NSLog(@"Edit");
+    } else if (buttonIndex == 1) {
+        NSLog(@"Journal");
+    } else {
+        NSLog(@"Cancel");
+    }
+}
+
 #pragma mark Selectors
 - (void) treatmentListData:(NSNotification *)notification
 {
-    //NSLog(@"treatmentList: %@", [notification userInfo]);
+    NSLog(@"treatmentList: %@", [notification userInfo]);
     if (self.treatmentList == nil) {
         self.treatmentList = [[[NSArray alloc] init] autorelease];
     }
     
     self.treatmentList = [[[notification userInfo] objectForKey:@"list"] objectForKey:@"items"];
-    NSLog(@"treatmentList: %@", self.treatmentList);
+   // NSLog(@"treatmentList: %@", self.treatmentList);
 }
 
 - (void) doctorListData:(NSNotification *)notification
@@ -180,7 +193,7 @@ typedef enum
     }
     
     self.doctorList = [[[notification userInfo] objectForKey:@"list"] objectForKey:@"items"];
-    NSLog(@"doctorList: %@", self.doctorList);
+    //NSLog(@"doctorList: %@", self.doctorList);
 }
 
 - (void) onBackClick
@@ -189,9 +202,31 @@ typedef enum
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (void) onAddClick
+- (void) onExtrasClick: (id) sender
 {
+    UIActionSheet *extrasActionSheet = [[[UIActionSheet alloc] initWithTitle:@"Extras" delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil] autorelease];
+    [extrasActionSheet buttonTitleAtIndex:[extrasActionSheet addButtonWithTitle:@"Edit"]];
+    [extrasActionSheet buttonTitleAtIndex:[extrasActionSheet addButtonWithTitle:@"Journal"]];
+    [extrasActionSheet buttonTitleAtIndex:[extrasActionSheet addButtonWithTitle:@"Cancel"]];
+    [extrasActionSheet showFromTabBar:self.tabBarController.tabBar];
     
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        
+        UIViewController *viewControler = [[[UIViewController alloc]init] autorelease];
+        viewControler.contentSizeForViewInPopover = CGSizeMake(extrasActionSheet.frame.size.width
+                                                               , extrasActionSheet.frame.size.height);
+        
+        FPPopoverController *popOver = [[FPPopoverController alloc] initWithViewController:viewControler];
+        popOver.contentSize = CGSizeMake(viewControler.view.frame.size.width, viewControler.view.frame.size.height);
+        [popOver presentPopoverFromView:sender];
+        /*self.popOver = [[UIPopoverController alloc] initWithContentViewController:viewControler];
+        [_popOver presentPopoverFromBarButtonItem:self.navigationItem.rightBarButtonItem permittedArrowDirections:UIPopoverArrowDirectionDown animated:YES];
+        [_popOver setDelegate:self];*/
+    }
+    
+
+    //for Edit
+    /*
     NSDateFormatter *dateSched = [[[NSDateFormatter alloc] init] autorelease];
     dateSched.timeZone = [NSTimeZone defaultTimeZone];
     [dateSched setDateFormat:@"dd/MM/yy"];
@@ -226,6 +261,7 @@ typedef enum
     }
     
     [self.navigationController popViewControllerAnimated:YES];
+     */
 }
 
 /*- (void) debugPurposes
@@ -559,7 +595,7 @@ typedef enum
     [rightButton setImage:[UIImage imageNamed:@"PICClinicModel.bundle/iphone_Done_btn_s.png" ] forState:UIControlStateNormal];
     [rightButton setImage:[UIImage imageNamed:@"PICClinicModel.bundle/iphone_Done_btn_ss.png" ] forState:UIControlStateHighlighted];
     
-    [rightButton addTarget:self action:@selector(onAddClick) forControlEvents:UIControlEventTouchUpInside];
+    [rightButton addTarget:self action:@selector(onExtrasClick:) forControlEvents:UIControlEventTouchUpInside];
     
     UIView *rightButtonView = [[[UIView alloc] initWithFrame:rightButton.frame] autorelease];
     [rightButtonView addSubview:rightButton];
