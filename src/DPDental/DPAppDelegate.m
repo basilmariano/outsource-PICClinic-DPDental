@@ -14,6 +14,8 @@
 #import "DPTabBarItem.h"
 #import "DPTabBarController.h"
 #import "DPTreatmentListViewController.h"
+#import "Reachability.h"
+#import "DPTreatmentListHistoryViewController.h"
 
 @implementation DPAppDelegate
 
@@ -105,7 +107,8 @@
     DPViewController *lockViewController = [[[DPViewController alloc] initWithNibName:@"DPViewController" bundle:nil] autorelease];
     DPTreatmentListViewController *treatments = [[[DPTreatmentListViewController alloc] initWithNibName:@"DPTreatmentListViewController" bundle:nil] autorelease];
 
-    PCModelWebViewController *weAre = [[[PCModelWebViewController alloc] initWithArticleId:@"177" andArticleTitle:@"We Are" andCompanyId:@"9" andBackButtonHiddenFirst:YES] autorelease];
+    DPTreatmentListHistoryViewController *history = [[[DPTreatmentListHistoryViewController alloc] initWithNibName:@"DPTreatmentListHistoryViewController" bundle:nil] autorelease];
+    
     PCModelWebViewController *contactUs = [[[PCModelWebViewController alloc] initWithArticleId:@"178" andArticleTitle:@"Contact Us" andCompanyId:@"9" andBackButtonHiddenFirst:YES] autorelease];
     
     PCNavigationController *nav1 = [[[PCNavigationController alloc] initWithRootViewController:lockViewController] autorelease];
@@ -116,7 +119,7 @@
     nav2.backgroundImageView.image = [UIImage imageNamed:navigationBackgroundName];
     nav2.tabBarItem = [PCTabBarItem tabBarItemWithButton:treatmentTabButton];
     
-    PCNavigationController *nav3 = [[[PCNavigationController alloc] initWithRootViewController:weAre] autorelease];
+    PCNavigationController *nav3 = [[[PCNavigationController alloc] initWithRootViewController:history] autorelease];
     nav3.backgroundImageView.image = [UIImage imageNamed:navigationBackgroundName];
     nav3.tabBarItem = [PCTabBarItem tabBarItemWithButton:historyTabButton];
     
@@ -138,6 +141,18 @@
 	[tabBarController.view addSubview:splashImageView];
     
     [self performSelector:@selector(removeSplashImageView:) withObject:splashImageView afterDelay:3];
+    
+    
+    Reachability *networkReachability = [Reachability reachabilityForInternetConnection];
+    NetworkStatus networkStatus = [networkReachability currentReachabilityStatus];
+    if (networkStatus == NotReachable) {
+        NSLog(@"There IS NO internet connection");
+    } else {
+        
+        NSLog(@"There IS internet connection");
+        
+        
+    }        
     
     [[PCRequestHandler sharedInstance] requestVersionCheck:@"9"];
     

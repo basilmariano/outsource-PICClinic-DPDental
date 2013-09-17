@@ -1,60 +1,33 @@
 //
-//  DPTreatmentListViewController.m
+//  DPTreatmentListHistoryViewController.m
 //  DPDental
 //
-//  Created by Basil Mariano on 9/11/13.
+//  Created by Basil Mariano on 9/17/13.
 //  Copyright (c) 2013 Panfilo Mariano. All rights reserved.
 //
 
-#import "DPTreatmentListViewController.h"
+#import "DPTreatmentListHistoryViewController.h"
 #import "DPTreatmentCell.h"
 #import "DPTreatmentViewController.h"
 #import "Treatment.h"
 
-@interface DPTreatmentListViewController ()
+@interface DPTreatmentListHistoryViewController ()
 
 @property (nonatomic, retain) NSMutableArray *treatments;
 
-- (void) onAddClick;
-
 @end
 
-@implementation DPTreatmentListViewController
+@implementation DPTreatmentListHistoryViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-    NSString *nibName = [[XCDeviceManager sharedInstance]xibNameForDevice:@"DPTreatmentListViewController"];
+    NSString *nibName = [[XCDeviceManager sharedInstance]xibNameForDevice:@"DPTreatmentListHistoryViewController"];
     
     self = [super initWithNibName:nibName bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        self.navigationItem.title = @"Treatment";
+        self.navigationItem.title = @"History";
     }
-    
-    UIButton *addButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [addButton setFrame:CGRectMake(0.0f, 0.0f, 45.5f, 28.0f)];
-   
-    [addButton setImage:[UIImage imageNamed:@"PICClinicModel.bundle/iphone_Add_btn_s.png" ] forState:UIControlStateNormal];
-    [addButton setImage:[UIImage imageNamed:@"PICClinicModel.bundle/iphone_Add_btn_ss.png" ] forState:UIControlStateHighlighted];
-    
-    [addButton addTarget:self action:@selector(onAddClick) forControlEvents:UIControlEventTouchUpInside];
-    
-    UIView *rightButtonView = [[[UIView alloc] initWithFrame:addButton.frame] autorelease];
-    [rightButtonView addSubview:addButton];
-    
-    if ([XCDeviceManager sharedInstance].deviceType == iPad_Device ) {
-        
-        [addButton setFrame:CGRectMake(0.0f, 17.0f, 105.5f, 66.5f)];
-        [addButton setImage:[UIImage imageNamed:@"PICClinicModel.bundle/ipad_Add_btn_s.png" ] forState:UIControlStateNormal];
-        [addButton setImage:[UIImage imageNamed:@"PICClinicModel.bundle/ipad_Add_btn_ss.png" ] forState:UIControlStateHighlighted];
-        
-        rightButtonView.frame = CGRectMake(0.0f, 0.0f, 105.5f, 66.5f);
-    }
-    
-    UIBarButtonItem *addButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:rightButtonView] autorelease];
-    
-    self.navigationItem.rightBarButtonItem = addButtonItem;
-    
     return self;
 }
 
@@ -70,9 +43,9 @@
 - (void) viewWillAppear:(BOOL)animated
 {
     if (!self.treatments) {
-        self.treatments = [[[NSMutableArray alloc] initWithArray:[Treatment treatmentsAfterDate:[NSDate date]]] autorelease];
+        self.treatments = [[[NSMutableArray alloc] initWithArray:[Treatment treatmentsBeforeDate:[NSDate date]]] autorelease];
     } else {
-        NSArray *treatmentList = [Treatment treatmentsAfterDate:[NSDate date]];
+        NSArray *treatmentList = [Treatment treatmentsBeforeDate:[NSDate date]];
         [self.treatments removeAllObjects];
         for (Treatment *treatment in treatmentList) {
             [self.treatments addObject:treatment];
@@ -106,7 +79,7 @@
     
     if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         cellIdentifier = @"DPTreatmentCell~ipad";
-    } 
+    }
     
     DPTreatmentCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     
@@ -173,7 +146,7 @@
     NSLog(@"Selected index %ld", (long)indexPath.row);
     Treatment *treatment = (Treatment *) [self.treatments objectAtIndex:indexPath.row];
     
-    DPTreatmentViewController *treatmentViewController = [[[DPTreatmentViewController alloc] initWithTreatment:treatment] autorelease];
+    DPTreatmentViewController *treatmentViewController = [[[DPTreatmentViewController alloc] initWithTreatmentHistory:treatment] autorelease];
     
     [self.navigationController pushViewController:treatmentViewController animated:YES];
 }
@@ -186,15 +159,6 @@
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     //change the BG of the selected cell
-}
-
-#pragma mark Private Functions
-
-- (void) onAddClick
-{
-    NSLog(@"Add");
-    DPTreatmentViewController *newTreatment = [[[DPTreatmentViewController alloc] initWithNibName:@"DPTreatmentViewController" bundle:nil] autorelease];
-    [self.navigationController pushViewController:newTreatment animated:YES];
 }
 
 @end

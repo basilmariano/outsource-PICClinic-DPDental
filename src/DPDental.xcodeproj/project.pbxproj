@@ -79,6 +79,11 @@
 		22BF6A7B17D6E502002F9F84 /* DPAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 22BF6A7A17D6E502002F9F84 /* DPAppDelegate.m */; };
 		22E9FB2217E0790400518FE6 /* DPTreatmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22E9FB2017E0790400518FE6 /* DPTreatmentViewController.m */; };
 		22E9FB2317E0790400518FE6 /* DPTreatmentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 22E9FB2117E0790400518FE6 /* DPTreatmentViewController.xib */; };
+		56E598BE17E86FB10019369A /* DPTreatmentListHistoryViewController-h568.xib in Resources */ = {isa = PBXBuildFile; fileRef = 56E598BD17E86FB10019369A /* DPTreatmentListHistoryViewController-h568.xib */; };
+		56E598C017E870250019369A /* DPTreatmentListHistoryViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 56E598BF17E870250019369A /* DPTreatmentListHistoryViewController~ipad.xib */; };
+		56F37EB517E851F000518B91 /* DPTreatmentListHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56F37EB317E851F000518B91 /* DPTreatmentListHistoryViewController.m */; };
+		56F37EB617E851F000518B91 /* DPTreatmentListHistoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 56F37EB417E851F000518B91 /* DPTreatmentListHistoryViewController.xib */; };
+		56F37EBE17E85D3E00518B91 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56F37EBD17E85D3E00518B91 /* SystemConfiguration.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -203,6 +208,12 @@
 		22F90D7617D894290004CE1B /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		22F90D7817D894360004CE1B /* Default-Portrait~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait~ipad.png"; sourceTree = "<group>"; };
 		22F90D7A17D894420004CE1B /* Default-Portrait@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait@2x~ipad.png"; sourceTree = "<group>"; };
+		56E598BD17E86FB10019369A /* DPTreatmentListHistoryViewController-h568.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DPTreatmentListHistoryViewController-h568.xib"; sourceTree = "<group>"; };
+		56E598BF17E870250019369A /* DPTreatmentListHistoryViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DPTreatmentListHistoryViewController~ipad.xib"; sourceTree = "<group>"; };
+		56F37EB217E851F000518B91 /* DPTreatmentListHistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DPTreatmentListHistoryViewController.h; sourceTree = "<group>"; };
+		56F37EB317E851F000518B91 /* DPTreatmentListHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DPTreatmentListHistoryViewController.m; sourceTree = "<group>"; };
+		56F37EB417E851F000518B91 /* DPTreatmentListHistoryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DPTreatmentListHistoryViewController.xib; sourceTree = "<group>"; };
+		56F37EBD17E85D3E00518B91 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -210,6 +221,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				56F37EBE17E85D3E00518B91 /* SystemConfiguration.framework in Frameworks */,
 				2224537817DED100002741DB /* libPICClinicModel.a in Frameworks */,
 				2224537017DEC289002741DB /* Security.framework in Frameworks */,
 				2224536F17DEC286002741DB /* Social.framework in Frameworks */,
@@ -384,6 +396,7 @@
 		22BF6A5E17D6E502002F9F84 = {
 			isa = PBXGroup;
 			children = (
+				56F37EBD17E85D3E00518B91 /* SystemConfiguration.framework */,
 				2224537617DEC628002741DB /* PICClinicModel.bundle */,
 				2224533917DEBEE0002741DB /* PICClinicModel.xcodeproj */,
 				22F90D7A17D894420004CE1B /* Default-Portrait@2x~ipad.png */,
@@ -432,6 +445,7 @@
 		22BF6A7017D6E502002F9F84 /* DPDental */ = {
 			isa = PBXGroup;
 			children = (
+				56F37EB117E8515900518B91 /* History Table View */,
 				22E9FB1E17E078C100518FE6 /* Treatment */,
 				2241D04917E01ACA00BC6335 /* Treatment List Cell */,
 				2241D04317E018D700BC6335 /* Treatment Table View */,
@@ -479,6 +493,18 @@
 				22288EEC17E1967400703203 /* DPTreatmentViewController~ipad.xib */,
 			);
 			name = Treatment;
+			sourceTree = "<group>";
+		};
+		56F37EB117E8515900518B91 /* History Table View */ = {
+			isa = PBXGroup;
+			children = (
+				56F37EB217E851F000518B91 /* DPTreatmentListHistoryViewController.h */,
+				56F37EB317E851F000518B91 /* DPTreatmentListHistoryViewController.m */,
+				56F37EB417E851F000518B91 /* DPTreatmentListHistoryViewController.xib */,
+				56E598BD17E86FB10019369A /* DPTreatmentListHistoryViewController-h568.xib */,
+				56E598BF17E870250019369A /* DPTreatmentListHistoryViewController~ipad.xib */,
+			);
+			name = "History Table View";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -599,6 +625,9 @@
 				22E9FB2317E0790400518FE6 /* DPTreatmentViewController.xib in Resources */,
 				22288EEB17E194D100703203 /* DPTreatmentViewController-h568.xib in Resources */,
 				22288EED17E1967400703203 /* DPTreatmentViewController~ipad.xib in Resources */,
+				56F37EB617E851F000518B91 /* DPTreatmentListHistoryViewController.xib in Resources */,
+				56E598BE17E86FB10019369A /* DPTreatmentListHistoryViewController-h568.xib in Resources */,
+				56E598C017E870250019369A /* DPTreatmentListHistoryViewController~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -624,6 +653,7 @@
 				2241D04717E01A7300BC6335 /* DPTreatmentListViewController.m in Sources */,
 				2241D04C17E01D0E00BC6335 /* DPTreatmentCell.m in Sources */,
 				22E9FB2217E0790400518FE6 /* DPTreatmentViewController.m in Sources */,
+				56F37EB517E851F000518B91 /* DPTreatmentListHistoryViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
