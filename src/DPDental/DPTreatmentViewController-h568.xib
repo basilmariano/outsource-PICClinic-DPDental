@@ -40,7 +40,7 @@
 					<object class="IBUILabel" id="443442984">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{27, 108}, {93, 21}}</string>
+						<string key="NSFrame">{{27, 108}, {115, 21}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSNextKeyView" ref="150266865"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -70,7 +70,7 @@
 					<object class="IBUILabel" id="713588881">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{27, 61}, {93, 21}}</string>
+						<string key="NSFrame">{{27, 61}, {115, 21}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSNextKeyView" ref="527310672"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -186,13 +186,7 @@
 						<int key="IBUIContentVerticalAlignment">0</int>
 						<string key="IBUIText"/>
 						<string key="IBUIPlaceholder">Treatment</string>
-						<object class="NSColor" key="IBUITextColor">
-							<int key="NSColorSpace">3</int>
-							<bytes key="NSWhite">MAA</bytes>
-							<object class="NSColorSpace" key="NSCustomColorSpace" id="529284503">
-								<int key="NSID">2</int>
-							</object>
-						</object>
+						<reference key="IBUITextColor" ref="314357801"/>
 						<bool key="IBUIAdjustsFontSizeToFit">YES</bool>
 						<float key="IBUIMinimumFontSize">17</float>
 						<object class="IBUITextInputTraits" key="IBUITextInputTraits">
@@ -222,11 +216,7 @@
 						<int key="IBUIContentVerticalAlignment">0</int>
 						<string key="IBUIText"/>
 						<string key="IBUIPlaceholder">Treatment</string>
-						<object class="NSColor" key="IBUITextColor">
-							<int key="NSColorSpace">3</int>
-							<bytes key="NSWhite">MAA</bytes>
-							<reference key="NSCustomColorSpace" ref="529284503"/>
-						</object>
+						<reference key="IBUITextColor" ref="314357801"/>
 						<bool key="IBUIAdjustsFontSizeToFit">YES</bool>
 						<float key="IBUIMinimumFontSize">17</float>
 						<object class="IBUITextInputTraits" key="IBUITextInputTraits">
@@ -249,11 +239,7 @@
 						<int key="IBUIContentVerticalAlignment">0</int>
 						<string key="IBUIText"/>
 						<string key="IBUIPlaceholder">Treatment</string>
-						<object class="NSColor" key="IBUITextColor">
-							<int key="NSColorSpace">3</int>
-							<bytes key="NSWhite">MAA</bytes>
-							<reference key="NSCustomColorSpace" ref="529284503"/>
-						</object>
+						<reference key="IBUITextColor" ref="314357801"/>
 						<bool key="IBUIAdjustsFontSizeToFit">YES</bool>
 						<float key="IBUIMinimumFontSize">17</float>
 						<object class="IBUITextInputTraits" key="IBUITextInputTraits">
@@ -282,7 +268,7 @@
 					<object class="IBUILabel" id="377051692">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{28, 200}, {115, 21}}</string>
+						<string key="NSFrame">{{29, 200}, {115, 21}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSNextKeyView" ref="742407306"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -304,7 +290,6 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{152, 197}, {134, 30}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -313,11 +298,7 @@
 						<int key="IBUIContentVerticalAlignment">0</int>
 						<string key="IBUIText"/>
 						<string key="IBUIPlaceholder">Treatment</string>
-						<object class="NSColor" key="IBUITextColor">
-							<int key="NSColorSpace">3</int>
-							<bytes key="NSWhite">MAA</bytes>
-							<reference key="NSCustomColorSpace" ref="529284503"/>
-						</object>
+						<reference key="IBUITextColor" ref="314357801"/>
 						<bool key="IBUIAdjustsFontSizeToFit">YES</bool>
 						<float key="IBUIMinimumFontSize">17</float>
 						<object class="IBUITextInputTraits" key="IBUITextInputTraits">
@@ -381,11 +362,7 @@
 								<int key="IBUIContentVerticalAlignment">0</int>
 								<string key="IBUIText"/>
 								<string key="IBUIPlaceholder">Journal</string>
-								<object class="NSColor" key="IBUITextColor">
-									<int key="NSColorSpace">3</int>
-									<bytes key="NSWhite">MAA</bytes>
-									<reference key="NSCustomColorSpace" ref="529284503"/>
-								</object>
+								<reference key="IBUITextColor" ref="314357801"/>
 								<bool key="IBUIAdjustsFontSizeToFit">YES</bool>
 								<float key="IBUIMinimumFontSize">17</float>
 								<object class="IBUITextInputTraits" key="IBUITextInputTraits">
@@ -401,7 +378,9 @@
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MQA</bytes>
-							<reference key="NSCustomColorSpace" ref="529284503"/>
+							<object class="NSColorSpace" key="NSCustomColorSpace" id="529284503">
+								<int key="NSID">2</int>
+							</object>
 						</object>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -582,16 +561,16 @@
 							<reference ref="443442984"/>
 							<reference ref="150266865"/>
 							<reference ref="713588881"/>
-							<reference ref="563128223"/>
 							<reference ref="251856041"/>
 							<reference ref="801954522"/>
 							<reference ref="527310672"/>
 							<reference ref="276180140"/>
 							<reference ref="749457230"/>
 							<reference ref="742407306"/>
-							<reference ref="377051692"/>
-							<reference ref="1050906352"/>
 							<reference ref="214486510"/>
+							<reference ref="377051692"/>
+							<reference ref="563128223"/>
+							<reference ref="1050906352"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>

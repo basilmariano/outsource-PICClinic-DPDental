@@ -693,13 +693,13 @@ typedef enum
 
 - (UIBarButtonItem *) rightBarButtonJournal
 {
-    /*self.rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [_rightButton setFrame:CGRectMake(0.0f, 0.0f, 45.5f, 28.0f)];
     
-    [_rightButton setImage:[UIImage imageNamed:@"PICClinicModel.bundle/iphone_Extra_btn_s.png" ] forState:UIControlStateNormal];
-    [_rightButton setImage:[UIImage imageNamed:@"PICClinicModel.bundle/iphone_Extra_btn_ss.png" ] forState:UIControlStateHighlighted];
+    [_rightButton setImage:[UIImage imageNamed:@"PICClinicModel.bundle/iphone_DP-Dental_Journal-btn_s.png" ] forState:UIControlStateNormal];
+    [_rightButton setImage:[UIImage imageNamed:@"PICClinicModel.bundle/iphone_DP-Dental_Journal-btn_ss.png" ] forState:UIControlStateHighlighted];
     
-    [_rightButton addTarget:self action:@selector(onExtrasClick:) forControlEvents:UIControlEventTouchUpInside];
+    [_rightButton addTarget:self action:@selector(onJournalClick) forControlEvents:UIControlEventTouchUpInside];
     
     UIView *rightButtonView = [[[UIView alloc] initWithFrame:_rightButton.frame] autorelease];
     [rightButtonView addSubview:_rightButton];
@@ -707,17 +707,13 @@ typedef enum
     if ([XCDeviceManager sharedInstance].deviceType == iPad_Device ) {
         
         [_rightButton setFrame:CGRectMake(0.0f, 17.0f, 105.5f, 66.5f)];
-        [_rightButton setImage:[UIImage imageNamed:@"PICClinicModel.bundle/ipad_Extra_btn_s.png" ] forState:UIControlStateNormal];
-        [_rightButton setImage:[UIImage imageNamed:@"PICClinicModel.bundle/ipad_Extra_btn_ss.png" ] forState:UIControlStateHighlighted];
+        [_rightButton setImage:[UIImage imageNamed:@"PICClinicModel.bundle/ipad_DP-Dental_Journal-btn_s.png" ] forState:UIControlStateNormal];
+        [_rightButton setImage:[UIImage imageNamed:@"PICClinicModel.bundle/ipad_DP-Dental_Journal-btn_ss.png" ] forState:UIControlStateHighlighted];
         
         rightButtonView.frame = CGRectMake(0.0f, 0.0f, 105.5f, 66.5f);
     }
     
-    return  [[[UIBarButtonItem alloc] initWithCustomView:rightButtonView] autorelease];*/
-    
-    UIBarButtonItem *barItem = [[[UIBarButtonItem alloc] initWithTitle:@"Journal" style:UIBarButtonItemStylePlain target:self action:@selector(onJournalClick)] autorelease];
-    
-    return barItem;
+    return  [[[UIBarButtonItem alloc] initWithCustomView:rightButtonView] autorelease];
 }
 
 - (UIBarButtonItem *) rightBarButtonExtras

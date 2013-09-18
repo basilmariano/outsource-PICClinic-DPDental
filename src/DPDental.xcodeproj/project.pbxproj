@@ -79,6 +79,13 @@
 		22BF6A7B17D6E502002F9F84 /* DPAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 22BF6A7A17D6E502002F9F84 /* DPAppDelegate.m */; };
 		22E9FB2217E0790400518FE6 /* DPTreatmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22E9FB2017E0790400518FE6 /* DPTreatmentViewController.m */; };
 		22E9FB2317E0790400518FE6 /* DPTreatmentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 22E9FB2117E0790400518FE6 /* DPTreatmentViewController.xib */; };
+		5679363B17E9252D00E8D636 /* DPInfoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5679363917E9252D00E8D636 /* DPInfoTableViewController.m */; };
+		5679363C17E9252D00E8D636 /* DPInfoTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5679363A17E9252D00E8D636 /* DPInfoTableViewController.xib */; };
+		5679364017E9276700E8D636 /* DPInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5679363F17E9276700E8D636 /* DPInfoCell.m */; };
+		5679364217E927C700E8D636 /* DPInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5679364117E927C700E8D636 /* DPInfoCell.xib */; };
+		5679364617E928A600E8D636 /* DPInfoCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5679364517E928A600E8D636 /* DPInfoCell~ipad.xib */; };
+		5679364817E9550F00E8D636 /* DPInfoTableViewController-h568.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5679364717E9550F00E8D636 /* DPInfoTableViewController-h568.xib */; };
+		5679364A17E9554C00E8D636 /* DPInfoTableViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5679364917E9554C00E8D636 /* DPInfoTableViewController~ipad.xib */; };
 		56E598BE17E86FB10019369A /* DPTreatmentListHistoryViewController-h568.xib in Resources */ = {isa = PBXBuildFile; fileRef = 56E598BD17E86FB10019369A /* DPTreatmentListHistoryViewController-h568.xib */; };
 		56E598C017E870250019369A /* DPTreatmentListHistoryViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 56E598BF17E870250019369A /* DPTreatmentListHistoryViewController~ipad.xib */; };
 		56F37EB517E851F000518B91 /* DPTreatmentListHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56F37EB317E851F000518B91 /* DPTreatmentListHistoryViewController.m */; };
@@ -208,6 +215,15 @@
 		22F90D7617D894290004CE1B /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		22F90D7817D894360004CE1B /* Default-Portrait~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait~ipad.png"; sourceTree = "<group>"; };
 		22F90D7A17D894420004CE1B /* Default-Portrait@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait@2x~ipad.png"; sourceTree = "<group>"; };
+		5679363817E9252D00E8D636 /* DPInfoTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DPInfoTableViewController.h; sourceTree = "<group>"; };
+		5679363917E9252D00E8D636 /* DPInfoTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DPInfoTableViewController.m; sourceTree = "<group>"; };
+		5679363A17E9252D00E8D636 /* DPInfoTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DPInfoTableViewController.xib; sourceTree = "<group>"; };
+		5679363E17E9276700E8D636 /* DPInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DPInfoCell.h; sourceTree = "<group>"; };
+		5679363F17E9276700E8D636 /* DPInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DPInfoCell.m; sourceTree = "<group>"; };
+		5679364117E927C700E8D636 /* DPInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DPInfoCell.xib; sourceTree = "<group>"; };
+		5679364517E928A600E8D636 /* DPInfoCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DPInfoCell~ipad.xib"; sourceTree = "<group>"; };
+		5679364717E9550F00E8D636 /* DPInfoTableViewController-h568.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DPInfoTableViewController-h568.xib"; sourceTree = "<group>"; };
+		5679364917E9554C00E8D636 /* DPInfoTableViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DPInfoTableViewController~ipad.xib"; sourceTree = "<group>"; };
 		56E598BD17E86FB10019369A /* DPTreatmentListHistoryViewController-h568.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DPTreatmentListHistoryViewController-h568.xib"; sourceTree = "<group>"; };
 		56E598BF17E870250019369A /* DPTreatmentListHistoryViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DPTreatmentListHistoryViewController~ipad.xib"; sourceTree = "<group>"; };
 		56F37EB217E851F000518B91 /* DPTreatmentListHistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DPTreatmentListHistoryViewController.h; sourceTree = "<group>"; };
@@ -445,6 +461,8 @@
 		22BF6A7017D6E502002F9F84 /* DPDental */ = {
 			isa = PBXGroup;
 			children = (
+				5679363D17E9274500E8D636 /* Info List Cell */,
+				5679363517E924DF00E8D636 /* Info Table View */,
 				56F37EB117E8515900518B91 /* History Table View */,
 				22E9FB1E17E078C100518FE6 /* Treatment */,
 				2241D04917E01ACA00BC6335 /* Treatment List Cell */,
@@ -493,6 +511,29 @@
 				22288EEC17E1967400703203 /* DPTreatmentViewController~ipad.xib */,
 			);
 			name = Treatment;
+			sourceTree = "<group>";
+		};
+		5679363517E924DF00E8D636 /* Info Table View */ = {
+			isa = PBXGroup;
+			children = (
+				5679363817E9252D00E8D636 /* DPInfoTableViewController.h */,
+				5679363917E9252D00E8D636 /* DPInfoTableViewController.m */,
+				5679363A17E9252D00E8D636 /* DPInfoTableViewController.xib */,
+				5679364717E9550F00E8D636 /* DPInfoTableViewController-h568.xib */,
+				5679364917E9554C00E8D636 /* DPInfoTableViewController~ipad.xib */,
+			);
+			name = "Info Table View";
+			sourceTree = "<group>";
+		};
+		5679363D17E9274500E8D636 /* Info List Cell */ = {
+			isa = PBXGroup;
+			children = (
+				5679363E17E9276700E8D636 /* DPInfoCell.h */,
+				5679363F17E9276700E8D636 /* DPInfoCell.m */,
+				5679364117E927C700E8D636 /* DPInfoCell.xib */,
+				5679364517E928A600E8D636 /* DPInfoCell~ipad.xib */,
+			);
+			name = "Info List Cell";
 			sourceTree = "<group>";
 		};
 		56F37EB117E8515900518B91 /* History Table View */ = {
@@ -628,6 +669,11 @@
 				56F37EB617E851F000518B91 /* DPTreatmentListHistoryViewController.xib in Resources */,
 				56E598BE17E86FB10019369A /* DPTreatmentListHistoryViewController-h568.xib in Resources */,
 				56E598C017E870250019369A /* DPTreatmentListHistoryViewController~ipad.xib in Resources */,
+				5679363C17E9252D00E8D636 /* DPInfoTableViewController.xib in Resources */,
+				5679364217E927C700E8D636 /* DPInfoCell.xib in Resources */,
+				5679364617E928A600E8D636 /* DPInfoCell~ipad.xib in Resources */,
+				5679364817E9550F00E8D636 /* DPInfoTableViewController-h568.xib in Resources */,
+				5679364A17E9554C00E8D636 /* DPInfoTableViewController~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -654,6 +700,8 @@
 				2241D04C17E01D0E00BC6335 /* DPTreatmentCell.m in Sources */,
 				22E9FB2217E0790400518FE6 /* DPTreatmentViewController.m in Sources */,
 				56F37EB517E851F000518B91 /* DPTreatmentListHistoryViewController.m in Sources */,
+				5679363B17E9252D00E8D636 /* DPInfoTableViewController.m in Sources */,
+				5679364017E9276700E8D636 /* DPInfoCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

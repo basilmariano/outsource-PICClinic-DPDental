@@ -16,6 +16,7 @@
 #import "DPTreatmentListViewController.h"
 #import "Reachability.h"
 #import "DPTreatmentListHistoryViewController.h"
+#import "DPInfoTableViewController.h"
 
 @implementation DPAppDelegate
 
@@ -109,8 +110,8 @@
 
     DPTreatmentListHistoryViewController *history = [[[DPTreatmentListHistoryViewController alloc] initWithNibName:@"DPTreatmentListHistoryViewController" bundle:nil] autorelease];
     
-    PCModelWebViewController *contactUs = [[[PCModelWebViewController alloc] initWithArticleId:@"178" andArticleTitle:@"Contact Us" andCompanyId:@"9" andBackButtonHiddenFirst:YES] autorelease];
-    
+    DPInfoTableViewController *infoList = [[[DPInfoTableViewController alloc] initWithNibName:@"DPInfoTableViewController" bundle:nil] autorelease];
+
     PCNavigationController *nav1 = [[[PCNavigationController alloc] initWithRootViewController:lockViewController] autorelease];
     nav1.backgroundImageView.image = [UIImage imageNamed:navigationBackgroundName];
     nav1.tabBarItem = [PCTabBarItem tabBarItemWithButton:homeTabButton];
@@ -123,7 +124,7 @@
     nav3.backgroundImageView.image = [UIImage imageNamed:navigationBackgroundName];
     nav3.tabBarItem = [PCTabBarItem tabBarItemWithButton:historyTabButton];
     
-    PCNavigationController *nav4 = [[[PCNavigationController alloc] initWithRootViewController:contactUs] autorelease];
+    PCNavigationController *nav4 = [[[PCNavigationController alloc] initWithRootViewController:infoList] autorelease];
     nav4.backgroundImageView.image = [UIImage imageNamed:navigationBackgroundName];
     nav4.tabBarItem = [PCTabBarItem tabBarItemWithButton:infoTabButton];
     
