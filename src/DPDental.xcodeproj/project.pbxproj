@@ -79,6 +79,10 @@
 		22BF6A7B17D6E502002F9F84 /* DPAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 22BF6A7A17D6E502002F9F84 /* DPAppDelegate.m */; };
 		22E9FB2217E0790400518FE6 /* DPTreatmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22E9FB2017E0790400518FE6 /* DPTreatmentViewController.m */; };
 		22E9FB2317E0790400518FE6 /* DPTreatmentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 22E9FB2117E0790400518FE6 /* DPTreatmentViewController.xib */; };
+		5612C5FA17EACF0E0093D78D /* icon57.png in Resources */ = {isa = PBXBuildFile; fileRef = 5612C5F917EACF0E0093D78D /* icon57.png */; };
+		5612C5FC17EACF1E0093D78D /* icon114.png in Resources */ = {isa = PBXBuildFile; fileRef = 5612C5FB17EACF1E0093D78D /* icon114.png */; };
+		5612C5FE17EACF2C0093D78D /* icon72.png in Resources */ = {isa = PBXBuildFile; fileRef = 5612C5FD17EACF2B0093D78D /* icon72.png */; };
+		5612C60017EACF310093D78D /* icon144.png in Resources */ = {isa = PBXBuildFile; fileRef = 5612C5FF17EACF310093D78D /* icon144.png */; };
 		5679363B17E9252D00E8D636 /* DPInfoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5679363917E9252D00E8D636 /* DPInfoTableViewController.m */; };
 		5679363C17E9252D00E8D636 /* DPInfoTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5679363A17E9252D00E8D636 /* DPInfoTableViewController.xib */; };
 		5679364017E9276700E8D636 /* DPInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5679363F17E9276700E8D636 /* DPInfoCell.m */; };
@@ -215,6 +219,10 @@
 		22F90D7617D894290004CE1B /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		22F90D7817D894360004CE1B /* Default-Portrait~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait~ipad.png"; sourceTree = "<group>"; };
 		22F90D7A17D894420004CE1B /* Default-Portrait@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait@2x~ipad.png"; sourceTree = "<group>"; };
+		5612C5F917EACF0E0093D78D /* icon57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon57.png; sourceTree = "<group>"; };
+		5612C5FB17EACF1E0093D78D /* icon114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon114.png; sourceTree = "<group>"; };
+		5612C5FD17EACF2B0093D78D /* icon72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon72.png; sourceTree = "<group>"; };
+		5612C5FF17EACF310093D78D /* icon144.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon144.png; sourceTree = "<group>"; };
 		5679363817E9252D00E8D636 /* DPInfoTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DPInfoTableViewController.h; sourceTree = "<group>"; };
 		5679363917E9252D00E8D636 /* DPInfoTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DPInfoTableViewController.m; sourceTree = "<group>"; };
 		5679363A17E9252D00E8D636 /* DPInfoTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DPInfoTableViewController.xib; sourceTree = "<group>"; };
@@ -412,6 +420,10 @@
 		22BF6A5E17D6E502002F9F84 = {
 			isa = PBXGroup;
 			children = (
+				5612C5FF17EACF310093D78D /* icon144.png */,
+				5612C5FD17EACF2B0093D78D /* icon72.png */,
+				5612C5FB17EACF1E0093D78D /* icon114.png */,
+				5612C5F917EACF0E0093D78D /* icon57.png */,
 				56F37EBD17E85D3E00518B91 /* SystemConfiguration.framework */,
 				2224537617DEC628002741DB /* PICClinicModel.bundle */,
 				2224533917DEBEE0002741DB /* PICClinicModel.xcodeproj */,
@@ -674,6 +686,10 @@
 				5679364617E928A600E8D636 /* DPInfoCell~ipad.xib in Resources */,
 				5679364817E9550F00E8D636 /* DPInfoTableViewController-h568.xib in Resources */,
 				5679364A17E9554C00E8D636 /* DPInfoTableViewController~ipad.xib in Resources */,
+				5612C5FA17EACF0E0093D78D /* icon57.png in Resources */,
+				5612C5FC17EACF1E0093D78D /* icon114.png in Resources */,
+				5612C5FE17EACF2C0093D78D /* icon72.png in Resources */,
+				5612C60017EACF310093D78D /* icon144.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

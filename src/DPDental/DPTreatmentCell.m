@@ -22,10 +22,6 @@
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
     [super setSelected:selected animated:animated];
-
-   /* UIImageView *selBGView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"BrownCellBG.png"]] autorelease];
-    self.selectedBackgroundView = selBGView;
-    */
     // Configure the view for the selected state
 }
 

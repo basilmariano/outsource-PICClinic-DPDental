@@ -143,18 +143,6 @@
     
     [self performSelector:@selector(removeSplashImageView:) withObject:splashImageView afterDelay:3];
     
-    
-    Reachability *networkReachability = [Reachability reachabilityForInternetConnection];
-    NetworkStatus networkStatus = [networkReachability currentReachabilityStatus];
-    if (networkStatus == NotReachable) {
-        NSLog(@"There IS NO internet connection");
-    } else {
-        
-        NSLog(@"There IS internet connection");
-        
-        
-    }        
-    
     [[PCRequestHandler sharedInstance] requestVersionCheck:@"9"];
     
     [self.window makeKeyAndVisible];

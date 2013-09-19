@@ -186,6 +186,13 @@
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     //change the BG of the selected cell
+    NSString *imageName = @"PICClinicModel.bundle/iphone_DP-Dental_ListView1_640x90.jpg";
+    if (indexPath.row % 2 == 0) {
+        imageName = @"PICClinicModel.bundle/iphone_DP-Dental_ListView2_640x90.jpg";
+    }
+    UIImageView *celBG = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:imageName]] autorelease];
+    cell.backgroundView = celBG;
+
 }
 
 #pragma mark Private Functions

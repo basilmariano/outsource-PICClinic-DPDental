@@ -332,9 +332,19 @@ typedef enum
 
 - (void) onDoneClick: (id) sender
 {
-    [self saveTreatment];
     
-    [self.navigationController popViewControllerAnimated:YES];
+    if (([self.treatmentName.text isEqualToString: @""] || self.treatmentName.text == nil)
+        || ([self.doctorName.text isEqualToString:@""] || self.doctorName.text == nil)
+        || ([self.stepsDate.text isEqualToString:@""] || self.stepsDate.text == nil)
+        || ([self.stepsTime.text isEqualToString:@""] || self.stepsTime.text == nil)) {
+        
+        UIAlertView *alertMessage = [[[UIAlertView alloc] initWithTitle:@"Warning!" message:@"Please Fill-up all fields"delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil] autorelease];
+        [alertMessage show];
+    } else {
+        [self saveTreatment];
+        
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 /*- (void) debugPurposes

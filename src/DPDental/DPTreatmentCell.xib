@@ -143,6 +143,7 @@
 				<reference key="NSNextKeyView" ref="112893101"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+				<int key="IBUISelectionStyle">2</int>
 				<int key="IBUIAccessoryType">1</int>
 				<reference key="IBUIContentView" ref="112893101"/>
 				<string key="IBUIReuseIdentifier">DPTreatmentCell</string>

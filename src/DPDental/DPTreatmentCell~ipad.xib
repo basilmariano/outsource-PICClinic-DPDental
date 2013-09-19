@@ -149,6 +149,7 @@
 				<reference key="NSNextKeyView" ref="507855251"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
 				<string key="targetRuntimeIdentifier">IBIPadFramework</string>
+				<int key="IBUISelectionStyle">2</int>
 				<int key="IBUIAccessoryType">1</int>
 				<reference key="IBUIContentView" ref="507855251"/>
 				<real value="180" key="IBUIRowHeight"/>
