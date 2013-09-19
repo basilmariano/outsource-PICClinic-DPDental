@@ -26,4 +26,12 @@
     // Configure the view for the selected state
 }
 
+- (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated
+{
+    NSString *imageName = @"PICClinicModel.bundle/iphone_DP-Dental_ListView3_640x90.jpg";
+    
+    UIImageView *celBG = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:imageName]] autorelease];
+    self.backgroundView = celBG;
+}
+
 @end
